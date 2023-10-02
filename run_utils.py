@@ -190,7 +190,8 @@ def run_env(
         """
         metrics = None
         if done:
-            keys = ["prev_level_seed", "prev_level/total_steps", "prev_level/randomize_goal", "prev_level_complete", "prev_level/invisible_coin_collected"]
+            keys = ["prev_level_seed", "prev_level/total_steps", "prev_level/randomize_goal",
+                    "prev_level_complete", "prev_level/invisible_coin_collected"]
             metrics = [info[key] for key in keys]
             if info["prev_level_complete"]:
                 metrics.extend([False, False])

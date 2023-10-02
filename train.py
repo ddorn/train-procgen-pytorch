@@ -38,7 +38,7 @@ if __name__=='__main__':
     parser.add_argument('--wandb_tags',       type=str, nargs='+')
 
 
-    parser.add_argument('--random_percent',   type=int, default=0, help='COINRUN: percent of environments in which coin is randomized (only for coinrun)')
+    parser.add_argument('--random_percent',   type=float, default=0, help='COINRUN: percent of environments in which coin is randomized (only for coinrun)')
     parser.add_argument('--key_penalty',   type=int, default=0, help='HEIST_AISC: Penalty for picking up keys (divided by 10)')
     parser.add_argument('--step_penalty',   type=int, default=0, help='HEIST_AISC: Time penalty per step (divided by 1000)')
     parser.add_argument('--rand_region',   type=int, default=0, help='MAZE: size of region (in upper left corner) in which goal is sampled.')
@@ -136,7 +136,7 @@ if __name__=='__main__':
 
     logdir = os.path.join('logs', 'train', env_name, exp_name)
     if args.model_file == "auto":  # try to figure out which file to load
-        logdirs_with_model = [d for d in listdir(logdir) if any(['model' in filename for filename in os.listdir(d)])] 
+        logdirs_with_model = [d for d in listdir(logdir) if any(['model' in filename for filename in os.listdir(d)])]
         if len(logdirs_with_model) > 1:
             raise ValueError("Received args.model_file = 'auto', but there are multiple experiments"
                                 f" with saved models under experiment_name {exp_name}.")
@@ -204,8 +204,8 @@ if __name__=='__main__':
         raise NotImplementedError
     agent = AGENT(env, policy, logger, storage, device,
                   num_checkpoints,
-                  env_valid=env_valid, 
-                  storage_valid=storage_valid,  
+                  env_valid=env_valid,
+                  storage_valid=storage_valid,
                   **hyperparameters)
     if args.model_file is not None:
         print("Loading agent from %s" % args.model_file)
